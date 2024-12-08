@@ -8,9 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun HomeScreen(navController: NavController) {
+    // Explicitně zadáme typ ViewModelu
+    val viewModel: MovieViewModel = viewModel()
+    // API klíč (zatím ho vlož přímo, ale později ho přesuneme do bezpečného úložiště)
+    val apiKey = "eaf02c172acda2e10f42e919feaab5cc"
+
+    // Zavolání funkce pro načtení dat
+    viewModel.fetchPopularMovies(apiKey)
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center

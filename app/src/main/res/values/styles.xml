@@ -1,0 +1,9 @@
+<resources>
+    <!-- Custom theme for your app, based on Material3 or AppCompat -->
+    <style name="Theme.MovieTracker" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+    </style>
+</resources>
+

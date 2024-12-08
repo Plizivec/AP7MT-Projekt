@@ -14,31 +14,35 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.movietracker.ui.theme.MovieTrackerTheme
 
-class MainActivity : ComponentActivity() {
+import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.movietracker.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private val movieViewModel: MovieViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            MovieTrackerTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    MovieApp()
-                }
-            }
-        }
-    }
-}
 
-@Composable
-fun MovieApp() {
-    val navController: NavHostController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = "home"
-    ) {
-        composable("home") { HomeScreen(navController) }
-        composable("detail") { DetailScreen() }
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Inicializujeme RecyclerView
+        val movieAdapter = MovieAdapter()
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = movieAdapter
+
+        // Přidáme pozorovatele na LiveData
+        movieViewModel.movies.observe(this) { movies ->
+            // Když se data změní, aktualizujeme RecyclerView
+            movieAdapter.submitList(movies)
+        }
+
+        // Načteme populární filmy z API
+        movieViewModel.fetchPopularMovies("eaf02c172acda2e10f42e919feaab5cc")
     }
 }

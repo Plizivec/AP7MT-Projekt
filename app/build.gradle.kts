@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+
 }
 
 android {
@@ -36,8 +38,18 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
+        dataBinding = true  // Povolení DataBinding
     }
+    viewBinding {
+        enable = true
+    }
+    dataBinding{
+        enable = true
+    }
+
 }
+
 
 dependencies {
 
@@ -52,6 +64,18 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.gson)
+
+    implementation("androidx.recyclerview:recyclerview:1.2.1")  // Závislost na RecyclerView
+    implementation("androidx.cardview:cardview:1.0.0")  // Pokud používáš CardView
+
+    implementation(libs.androidx.material3)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -9,6 +9,14 @@ lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.04.01"
 
+room = "2.5.2"
+retrofit = "2.9.0"
+gson = "2.10.1"
+
+recyclerView = "1.2.1"
+cardView = "1.0.0"
+
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -28,10 +36,18 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-navigation-fragment = "androidx.navigation:navigation-fragment-ktx:2.7.0"
 androidx-navigation-ui = "androidx.navigation:navigation-ui-ktx:2.7.0"
 androidx-navigation-compose = "androidx.navigation:navigation-compose:2.7.0"
-
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerView" }
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardView" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
 
