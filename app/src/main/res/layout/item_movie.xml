@@ -1,31 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="8dp">
 
+    <!-- Obrázek filmu -->
+    <ImageView
+        android:id="@+id/posterImageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="poster_image" />
+
+    <!-- Název filmu -->
     <TextView
         android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Movie Title"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:gravity="center_horizontal" />
 
+    <!-- Hodnocení filmu -->
     <TextView
-        android:id="@+id/releaseYearTextView"
-        android:layout_width="wrap_content"
+        android:id="@+id/vote_averageTextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Release Year"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/genreTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Genre"
-        android:textSize="16sp" />
-
+        android:text="Rating"
+        android:textSize="14sp"
+        android:gravity="center_horizontal" />
 </LinearLayout>
+
 

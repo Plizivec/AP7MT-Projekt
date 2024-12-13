@@ -5,17 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-// Zadefinujeme databázi
-@Database(entities = [MovieEntity::class], version = 1, exportSchema = false)
+@Database(entities = [MovieFavouriteEntity::class], version = 1)
 abstract class MovieDatabase : RoomDatabase() {
-
     abstract fun movieDao(): MovieDao
 
     companion object {
         @Volatile
         private var INSTANCE: MovieDatabase? = null
 
-        // Tento blok ručně zajistí vytvoření instance databáze
         fun getDatabase(context: Context): MovieDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -29,4 +26,6 @@ abstract class MovieDatabase : RoomDatabase() {
         }
     }
 }
+
+
 

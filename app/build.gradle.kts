@@ -2,9 +2,14 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id ("kotlin-parcelize")
+    id("com.google.devtools.ksp") version "2.0.10-1.0.24"
+
+
 
 
 }
+
 
 android {
     namespace = "com.example.movietracker"
@@ -29,6 +34,8 @@ android {
             )
         }
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -48,6 +55,8 @@ android {
         enable = true
     }
 
+
+
 }
 
 
@@ -64,8 +73,8 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
+    implementation("androidx.room:room-runtime:2.5.0")
+    implementation("androidx.room:room-ktx:2.5.0")
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
@@ -75,7 +84,13 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")  // Pokud používáš CardView
 
     implementation(libs.androidx.material3)
-
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+    ksp("androidx.room:room-compiler:2.5.0")
+    // K dispozici pro asynchronní operace
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
+    //implementation ("com.squareup.sqldelight:android-driver:1.5.3")
+    //implementation ("com.squareup.sqldelight:coroutines-extensions:1.5.3")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
