@@ -20,6 +20,9 @@ class MovieViewModel : ViewModel() {
     private val movieApiService = ApiClient.retrofit.create(MovieApiService::class.java)
     private val movieDao = MovieDatabase.getDatabase(App.instance).movieDao()  // Zajistí přístup k databázi
 
+    private val _searchResults = MutableLiveData<List<MovieFavouriteEntity>>()
+    val searchResults: LiveData<List<MovieFavouriteEntity>> get() = _searchResults
+
     // Načítání populárních filmů z API
     fun fetchPopularMovies(apiKey: String) {
         viewModelScope.launch {
@@ -79,6 +82,44 @@ class MovieViewModel : ViewModel() {
             }
         }
     }
+
+    fun isFavourite(movieId: Int): LiveData<Boolean> {
+        val isFavouriteLiveData = MutableLiveData<Boolean>()
+        viewModelScope.launch {
+            try {
+                val favourites = movieDao.getFavourites()
+                val isFavourite = favourites.any { it.id == movieId }
+                isFavouriteLiveData.postValue(isFavourite)
+            } catch (e: Exception) {
+                Log.e("DB_ERROR", "Error checking favourite: ${e.message}")
+            }
+        }
+        return isFavouriteLiveData
+    }
+
+    // Vyhledávání filmů podle názvu
+    fun searchMovies(apiKey: String, query: String) {
+        viewModelScope.launch {
+            try {
+                val response = movieApiService.searchMovies(query, apiKey)
+                _movies.value = response.results
+            } catch (e: Exception) {
+                Log.e("API_ERROR", "Error searching movies: ${e.message}")
+            }
+        }
+    }
+
+    // Třídění filmů podle hodnocení
+    fun sortMoviesByRating(ascending: Boolean) {
+        // Pokud je _movies.value null, tak použijeme prázdný seznam.
+        val sortedMovies = _movies.value?.sortedBy {
+            if (ascending) it.vote_average else -it.vote_average
+        } ?: emptyList()  // Pokud je null, použijeme prázdný seznam
+
+        // Nastavení nového seznamu filmů
+        _movies.value = sortedMovies
+    }
+
 }
 
 

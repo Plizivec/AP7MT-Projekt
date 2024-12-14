@@ -9,8 +9,18 @@ interface MovieApiService {
         @Query("api_key") apiKey: String,
         @Query("page") page: Int = 1
     ): MovieResponse
+
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("query") query: String,
+        @Query("api_key") apiKey: String
+    ): MovieApiResponse
 }
 
 data class MovieResponse(
     val results: List<MovieEntity> // Propojíme s naší entitou
+)
+
+data class MovieApiResponse(
+    val results: List<MovieEntity>
 )

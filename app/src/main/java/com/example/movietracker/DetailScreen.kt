@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.movietracker.MovieDatabase
-import com.example.movietracker.MovieFavouriteEntity
 import com.example.movietracker.databinding.ActivityDetailBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,32 +35,69 @@ class DetailScreen : AppCompatActivity() {
             binding.voteAverageTextView.text = "Rating: ${it.vote_average}"
             binding.releaseDateTextView.text = "Release Date: ${it.release_date}"
             binding.overviewTextView.text = it.overview
-        }
 
+            // Zjištění, zda je film v oblíbených
+            CoroutineScope(Dispatchers.IO).launch {
+                val isFavourite = movieDao.getFavourites().any { fav -> fav.id == it.id }
 
-        // Přidání posluchače pro tlačítko "Add to Favourites"
-        binding.addToFavouritesButton.setOnClickListener {
-            movie?.let {
-                val favouriteMovie = MovieFavouriteEntity(
-                    id = it.id,
-                    title = it.title,
-                    poster_path = "https://image.tmdb.org/t/p/w500${it.poster_path}",
-                    vote_average = it.vote_average,
-                    release_date = it.release_date,
-                    overview = it.overview
-                )
-
-                CoroutineScope(Dispatchers.IO).launch {
-                    movieDao.addFavourite(favouriteMovie)
-
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(this@DetailScreen, "Added to Favourites", Toast.LENGTH_SHORT).show()
+                withContext(Dispatchers.Main) {
+                    if (isFavourite) {
+                        setupRemoveFromFavourites(movieDao, it)
+                    } else {
+                        setupAddToFavourites(movieDao, it)
                     }
                 }
             }
         }
     }
+
+    private fun setupAddToFavourites(movieDao: MovieDao, movie: MovieEntity) {
+        binding.addToFavouritesButton.text = "Add to Favourites"
+        binding.addToFavouritesButton.setOnClickListener {
+            val favouriteMovie = MovieFavouriteEntity(
+                id = movie.id,
+                title = movie.title,
+                poster_path = "https://image.tmdb.org/t/p/w500${movie.poster_path}",
+                vote_average = movie.vote_average,
+                release_date = movie.release_date,
+                overview = movie.overview
+            )
+
+            CoroutineScope(Dispatchers.IO).launch {
+                movieDao.addFavourite(favouriteMovie)
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@DetailScreen, "Added to Favourites", Toast.LENGTH_SHORT).show()
+                    setupRemoveFromFavourites(movieDao, movie) // Přepnutí tlačítka na "Remove from Favourites"
+                }
+            }
+        }
+    }
+
+    private fun setupRemoveFromFavourites(movieDao: MovieDao, movie: MovieEntity) {
+        binding.addToFavouritesButton.text = "Remove from Favourites"
+        binding.addToFavouritesButton.setOnClickListener {
+            val favouriteMovie = MovieFavouriteEntity(
+                id = movie.id,
+                title = movie.title,
+                poster_path = "https://image.tmdb.org/t/p/w500${movie.poster_path}",
+                vote_average = movie.vote_average,
+                release_date = movie.release_date,
+                overview = movie.overview
+            )
+
+            CoroutineScope(Dispatchers.IO).launch {
+                movieDao.deleteFavourite(favouriteMovie)
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@DetailScreen, "Removed from Favourites", Toast.LENGTH_SHORT).show()
+                    setupAddToFavourites(movieDao, movie) // Přepnutí tlačítka na "Add to Favourites"
+                }
+            }
+        }
+    }
 }
+
 
 
 

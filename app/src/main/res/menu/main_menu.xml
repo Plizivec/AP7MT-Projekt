@@ -2,10 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Textová položka pro Favourites -->
     <item
         android:id="@+id/action_favourite"
         android:title="Favourites"
         app:showAsAction="never" />
+
+    <!-- Menu pro seřazení podle hodnocení -->
+    <item
+        android:id="@+id/action_sort_by_rating"
+        android:title="Sort by Rating"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/action_sort_ascending"
+                android:title="Ascending"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/action_sort_descending"
+                android:title="Descending"
+                app:showAsAction="never" />
+        </menu>
+    </item>
 </menu>
+
 
 

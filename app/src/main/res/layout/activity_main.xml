@@ -10,12 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Vyhledávací pole nad seznamem filmů -->
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Search movies"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"/>
+
         <!-- RecyclerView pro zobrazení filmů -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="732dp"
-            android:layout_marginTop="25px" />
+            android:layout_height="match_parent"
+            android:layout_below="@id/searchEditText"
+            android:layout_marginTop="10dp" />
 
     </RelativeLayout>
+
 </layout>
