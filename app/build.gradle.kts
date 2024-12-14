@@ -91,7 +91,7 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
     //implementation ("com.squareup.sqldelight:android-driver:1.5.3")
     //implementation ("com.squareup.sqldelight:coroutines-extensions:1.5.3")
-
+    implementation ("androidx.core:core-splashscreen:1.0.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

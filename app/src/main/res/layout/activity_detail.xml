@@ -17,10 +17,6 @@
         android:scaleType="centerCrop" />
 
     <!-- Transparentní překryv s pozadím -->
-
-
-    <!-- Blok textu -->
-
     <View
         android:id="@+id/overlayView"
         android:layout_width="421dp"
@@ -51,6 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
             android:text="Title"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
@@ -61,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
+            android:paddingStart="16dp"
             android:text="Rating: 8.5"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
@@ -71,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
+            android:paddingStart="16dp"
             android:text="Release Date: 2023-12-12"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
@@ -81,6 +80,7 @@
             android:layout_width="365dp"
             android:layout_height="117dp"
             android:layout_marginTop="25px"
+            android:paddingStart="16dp"
             android:text="Overview: This is a movie description"
             android:textColor="@android:color/white"
             android:textSize="16sp" />
@@ -100,6 +100,7 @@
         app:layout_constraintTop_toTopOf="@+id/overlayView"
         tools:layout_editor_absoluteX="238dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 
