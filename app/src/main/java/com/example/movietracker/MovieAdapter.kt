@@ -50,3 +50,8 @@ class MovieAdapter : ListAdapter<MovieEntity, MovieAdapter.MovieViewHolder>(Movi
 }
 
 
+
+
+
+
+

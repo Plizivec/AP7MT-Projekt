@@ -23,6 +23,9 @@ class MovieViewModel : ViewModel() {
     private val _searchResults = MutableLiveData<List<MovieFavouriteEntity>>()
     val searchResults: LiveData<List<MovieFavouriteEntity>> get() = _searchResults
 
+    private val _recentHistory = MutableLiveData<List<MovieHistoryEntity>>()
+    val recentHistory: LiveData<List<MovieHistoryEntity>> get() = _recentHistory
+
     // Načítání populárních filmů z API
     fun fetchPopularMovies(apiKey: String) {
         viewModelScope.launch {
@@ -120,7 +123,39 @@ class MovieViewModel : ViewModel() {
         _movies.value = sortedMovies
     }
 
+    // Přidání filmu do historie
+    fun addToHistory(movie: MovieHistoryEntity) {
+        viewModelScope.launch {
+            try {
+                // Pokud je v historii více než 20 filmů, odstraníme nejstarší
+                val historyCount = movieDao.getHistoryCount()
+                if (historyCount >= 20) {
+                    movieDao.removeOldestHistory()
+                }
+
+                // Přidání filmu do historie
+                movieDao.addToHistory(movie)
+                loadRecentHistory() // Obnovení historie
+            } catch (e: Exception) {
+                Log.e("DB_ERROR", "Error adding to history: ${e.message}")
+            }
+        }
+    }
+
+    // Načítání historie
+    fun loadRecentHistory() {
+        viewModelScope.launch {
+            try {
+                val history = movieDao.getRecentHistory()
+                _recentHistory.value = history
+            } catch (e: Exception) {
+                Log.e("DB_ERROR", "Error loading history: ${e.message}")
+            }
+        }
+    }
+
 }
+
 
 
 

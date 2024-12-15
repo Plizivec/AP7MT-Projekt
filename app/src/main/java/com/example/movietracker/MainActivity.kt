@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -74,6 +73,12 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+            R.id.action_history -> {
+                // Přejít na obrazovku historie filmů
+                val intent = Intent(this, RecentHistoryActivity::class.java)  // Odkaz na existující obrazovku historie
+                startActivity(intent)
+                true
+            }
             R.id.action_sort_ascending -> {
                 // Seřadit filmy vzestupně podle hodnocení
                 movieViewModel.sortMoviesByRating(ascending = true)
@@ -92,4 +97,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
 

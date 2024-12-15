@@ -36,6 +36,9 @@ class DetailScreen : AppCompatActivity() {
             binding.releaseDateTextView.text = "Release Date: ${it.release_date}"
             binding.overviewTextView.text = it.overview
 
+            // Přidání filmu do historie
+            saveToHistory(movieDao, it)
+
             // Zjištění, zda je film v oblíbených
             CoroutineScope(Dispatchers.IO).launch {
                 val isFavourite = movieDao.getFavourites().any { fav -> fav.id == it.id }
@@ -48,6 +51,21 @@ class DetailScreen : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    private fun saveToHistory(movieDao: MovieDao, movie: MovieEntity) {
+        val movieHistory = MovieHistoryEntity(
+            id = movie.id,
+            title = movie.title,
+            poster_path = movie.poster_path,
+            vote_average = movie.vote_average,
+            release_date = movie.release_date,
+            overview = movie.overview
+        )
+
+        CoroutineScope(Dispatchers.IO).launch {
+            movieDao.addToHistory(movieHistory)
         }
     }
 
@@ -97,6 +115,10 @@ class DetailScreen : AppCompatActivity() {
         }
     }
 }
+
+
+
+
 
 
 

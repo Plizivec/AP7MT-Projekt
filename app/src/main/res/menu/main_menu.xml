@@ -9,6 +9,12 @@
         android:title="Favourites"
         app:showAsAction="never" />
 
+    <!-- Přidání položky pro Recent History -->
+    <item
+        android:id="@+id/action_history"
+        android:title="Recent History"
+        app:showAsAction="never" />
+
     <!-- Menu pro seřazení podle hodnocení -->
     <item
         android:id="@+id/action_sort_by_rating"
