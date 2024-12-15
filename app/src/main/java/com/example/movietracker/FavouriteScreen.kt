@@ -29,7 +29,7 @@ class FavouriteScreen : AppCompatActivity() {
             // Mapování na MovieEntity
             val movieList = favouriteMovies.map {
                 MovieEntity(
-                    id = it.id,  // Předpokládám, že máš stejné ID nebo podobná pole
+                    id = it.id,
                     title = it.title,
                     poster_path = it.poster_path,
                     vote_average = it.vote_average,
@@ -38,7 +38,7 @@ class FavouriteScreen : AppCompatActivity() {
                 )
             }
 
-            // Nyní předej seznam MovieEntity do adapteru
+
             movieAdapter.submitList(movieList)
         }
     }

@@ -3,7 +3,7 @@
     android:paddingTop="50px">
 
     <data>
-        <!-- Pokud budeš mít nějaké proměnné pro DataBinding, zde je definuješ. -->
+
     </data>
 
     <RelativeLayout

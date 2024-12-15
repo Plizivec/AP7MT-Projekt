@@ -26,28 +26,28 @@
             </intent-filter>
         </activity>
 
-        <!-- MainActivity definována pro spuštění aplikace -->
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.MovieTracker" />
 
-        <!-- Přidána deklarace pro DetailScreen aktivitu -->
+
         <activity android:name=".DetailScreen"
             android:exported="true"
             android:screenOrientation="portrait">
-            <!-- Možná sem chceš přidat i nějaké další nastavení, jako třeba animace přechodů apod. -->
+
         </activity>
 
         <activity android:name=".FavouriteScreen"
             android:exported="true">
-            <!-- Možná sem chceš přidat i nějaké další nastavení, jako třeba animace přechodů apod. -->
+
         </activity>
 
         <activity android:name=".RecentHistoryActivity"
             android:exported="true">
-            <!-- Zde můžete přidat jakékoli další atributy, pokud jsou potřeba -->
+
         </activity>
 
     </application>

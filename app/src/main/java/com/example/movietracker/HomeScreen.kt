@@ -12,9 +12,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    // Explicitně zadáme typ ViewModelu
+
     val viewModel: MovieViewModel = viewModel()
-    // API klíč (zatím ho vlož přímo, ale později ho přesuneme do bezpečného úložiště)
+    // API klíč
     val apiKey = "eaf02c172acda2e10f42e919feaab5cc"
 
     // Zavolání funkce pro načtení dat

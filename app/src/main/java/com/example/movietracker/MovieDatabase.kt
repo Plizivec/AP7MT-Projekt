@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-// Zde přidávám nové entity pro Movie a MovieHistoryEntity
 @Database(entities = [MovieFavouriteEntity::class, MovieHistoryEntity::class], version = 2)
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao

@@ -18,7 +18,7 @@ class MovieViewModel : ViewModel() {
     val favouriteMovies: LiveData<List<MovieFavouriteEntity>> get() = _favouriteMovies
 
     private val movieApiService = ApiClient.retrofit.create(MovieApiService::class.java)
-    private val movieDao = MovieDatabase.getDatabase(App.instance).movieDao()  // Zajistí přístup k databázi
+    private val movieDao = MovieDatabase.getDatabase(App.instance).movieDao()
 
     private val _searchResults = MutableLiveData<List<MovieFavouriteEntity>>()
     val searchResults: LiveData<List<MovieFavouriteEntity>> get() = _searchResults

@@ -12,6 +12,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        instance = this  // Uložíme instanci aplikace
+        instance = this  // Ukládání instance aplikace
     }
 }

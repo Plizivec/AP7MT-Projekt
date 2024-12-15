@@ -18,7 +18,7 @@ interface MovieApiService {
 }
 
 data class MovieResponse(
-    val results: List<MovieEntity> // Propojíme s naší entitou
+    val results: List<MovieEntity>
 )
 
 data class MovieApiResponse(

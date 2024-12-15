@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity() {
         // Nastavení listeneru pro vyhledávání
         binding.searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
-                // Tato metoda může být prázdná nebo ji můžeš implementovat pro specifické chování
+
             }
 
             override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
-                // Tato metoda může být prázdná nebo ji můžeš implementovat pro specifické chování
+
             }
 
             override fun afterTextChanged(editable: Editable?) {
@@ -82,14 +82,14 @@ class MainActivity : AppCompatActivity() {
             R.id.action_sort_ascending -> {
                 // Seřadit filmy vzestupně podle hodnocení
                 movieViewModel.sortMoviesByRating(ascending = true)
-                // Scrollujeme zpět na začátek
+
                 binding.recyclerView.smoothScrollToPosition(0)
                 true
             }
             R.id.action_sort_descending -> {
                 // Seřadit filmy sestupně podle hodnocení
                 movieViewModel.sortMoviesByRating(ascending = false)
-                // Scrollujeme zpět na začátek
+
                 binding.recyclerView.smoothScrollToPosition(0)
                 true
             }
